@@ -1,101 +1,73 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import React from "react";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import StyleButton from "@/components/style-button";
+import { ArrowRight } from "lucide-react";
+
+function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <AuroraBackground>
+      <motion.div
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="relative flex flex-col gap-4 items-center justify-center h-screen px-4 py-24"
+      >
+        <div className="h-[120px] w-full py-12 mt-12 sm:mt-9"></div>
+        <TypewriterEffect
+          words={words}
+          className="text-3xl md:text-5xl font-bold text-center font-pblack"
+          cursorClassName="bg-indigo-700"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <p className="lowercase text-base font-normal text-center dark:text-gray-400 text-slate-800/90  leading-2">
+          I am a dedicated full-stack developer specializing in Next.js and the
+          MERN stack. I create modern, responsive web applications using
+          Tailwind CSS and Shadcn for visually stunning, user-friendly
+          interfaces. Proficient with Redux Toolkit, I ensure seamless state
+          management. On the backend, I excel with MongoDB and Express, building
+          scalable, robust solutions. Adhering to best practices, I continuously
+          seek innovative approaches to enhance user experiences. My
+          comprehensive skills and dedication make me a valuable asset in
+          full-stack development
+        </p>
+
+        <div className="flex justify-center max-w-screen-sm w-full mt-9">
+          <StyleButton
+            text="Read About Me"
+            icon={<ArrowRight size={20} className="ml-2" />}
+            onPress={() => {}}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </motion.div>
+    </AuroraBackground>
   );
 }
+
+const words = [
+  {
+    text: "My",
+    className: "text-[.8em] dark:text-gray-200/70",
+  },
+  {
+    text: "Self",
+    className: "text-[.8em]  dark:text-gray-200/70",
+  },
+  {
+    text: "Karan",
+    className: "text-indigo-500 dark:text-indigo-600 text-[1.6em] font-pblack",
+  },
+  {
+    text: "Kumar",
+    className: "text-indigo-500 dark:text-indigo-600 text-[1.6em] font-pblack",
+  },
+];
+
+export default Home;
