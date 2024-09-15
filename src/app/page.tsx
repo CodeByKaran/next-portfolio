@@ -6,8 +6,13 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import StyleButton from "@/components/style-button";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 
 function Home() {
+
+  const router = useRouter()
+
   return (
     <AuroraBackground>
       <motion.div
@@ -23,7 +28,7 @@ function Home() {
         <div className="h-[120px] w-full py-12 mt-12 sm:mt-9"></div>
         <TypewriterEffect
           words={words}
-          className="text-3xl md:text-5xl font-bold text-center font-pblack"
+          className="text-3xl sm:text-5xl font-bold text-center font-pblack"
           cursorClassName="bg-indigo-700"
         />
 
@@ -43,7 +48,7 @@ function Home() {
           <StyleButton
             text="Read About Me"
             icon={<ArrowRight size={20} className="ml-2" />}
-            onPress={() => {}}
+            onPress={() => router.push("/about")}
           />
         </div>
       </motion.div>
@@ -54,19 +59,19 @@ function Home() {
 const words = [
   {
     text: "My",
-    className: "text-[.8em] dark:text-gray-200/70",
+    className: "text-[.8em]",
   },
   {
     text: "Self",
-    className: "text-[.8em]  dark:text-gray-200/70",
+    className: "text-[.8em] ",
   },
   {
     text: "Karan",
-    className: "text-indigo-500 dark:text-indigo-600 text-[1.6em] font-pblack",
+    className: "text-indigo-500 dark:text-indigo-400 text-[1.6em] font-pblack",
   },
   {
     text: "Kumar",
-    className: "text-indigo-500 dark:text-indigo-600 text-[1.6em] font-pblack",
+    className: "text-indigo-500 dark:text-indigo-400 text-[1.6em] font-pblack",
   },
 ];
 
