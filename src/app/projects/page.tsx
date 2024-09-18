@@ -1,9 +1,11 @@
+"use client"
+import GridBackground from '@/components/grid-background'
 import React from 'react'
 
 const Projects = () => {
   return (
-    <div>
-      project page
+    <div className='overflow-hidden'>
+      <GridBackground/>
     </div>
   )
 }
