@@ -23,16 +23,15 @@ function Home() {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="relative flex flex-col gap-4 items-center justify-center h-screen px-4 py-24"
+        className="relative flex flex-col gap-4 items-center justify-center h-full px-4 py-24  mt-20"
       >
-        <div className="h-[120px] w-full py-12 mt-12 sm:mt-9"></div>
+        
         <TypewriterEffect
           words={words}
-          className="text-3xl sm:text-5xl font-bold text-center font-pblack"
+          className="text-2xl sm:text-5xl font-bold text-center font-pblack "
           cursorClassName="bg-indigo-700"
         />
-
-        <p className="lowercase text-base font-normal text-center dark:text-gray-400 text-slate-800/90  leading-2">
+        <p className="lowercase text-[15px] sm:text-base font-normal text-center dark:text-gray-400 text-slate-800/90  leading-normal">
           I am a dedicated full-stack developer specializing in Next.js and the
           MERN stack. I create modern, responsive web applications using
           Tailwind CSS and Shadcn for visually stunning, user-friendly
@@ -43,14 +42,16 @@ function Home() {
           comprehensive skills and dedication make me a valuable asset in
           full-stack development
         </p>
-
-        <div className="flex justify-center max-w-screen-sm w-full mt-9">
-          <StyleButton
+        
+        <StyleButton
             text="Read About Me"
-            icon={<ArrowRight size={20} className="ml-2" />}
+            icon={<ArrowRight size={20} className="mx-auto" />}
             onPress={() => router.push("/about")}
           />
-        </div>
+       
+
+       
+        
       </motion.div>
     </AuroraBackground>
   );

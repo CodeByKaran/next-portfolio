@@ -12,15 +12,16 @@ interface buttonProps {
 
 function StyleButton({text,icon,onPress}:buttonProps) {
   return (
-    <div onClick={onPress}>
+  <div className="translate-y-4">
       <Button
-        className="bg-inherit text-black dark:text-white border-neutral-200 dark:border-slate-800"
+        className="bg-inherit text-black dark:text-white border-neutral-200 dark:border-slate-800 flex items-center justify-between px-3 py-2"
+        onClick={onPress}
       >
         {text} {" "}
         {icon&&icon}
       </Button>
-    </div>
-  );
+      </div>
+      );
 }
 
 export default StyleButton;

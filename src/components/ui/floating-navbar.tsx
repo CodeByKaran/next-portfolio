@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   motion,
   AnimatePresence,
@@ -10,14 +10,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
+const getCurrentTheme = () => {
+  const theme = localStorage.getItem("theme");
+  return theme == "system" ? "dark" : theme || "dark";
+};
 
 export const FloatingNav = ({
   navItems,
@@ -31,6 +29,7 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { setTheme } = useTheme();
+  const [currentTheme, setCurrentTheme] = useState<any>(getCurrentTheme);
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(true);
@@ -39,17 +38,26 @@ export const FloatingNav = ({
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
 
-     if(scrollYProgress.getPrevious()==0){
-       setVisible(true)
-    }else{
-      if (direction <= 0) {
+      if (scrollYProgress.getPrevious() == 0) {
         setVisible(true);
       } else {
-        setVisible(false);
+        if (direction <= 0) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
       }
     }
-    }
   });
+
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme);
+    setCurrentTheme(theme);
+  };
+
+  useEffect(() => {
+    setTheme(currentTheme);
+  }, []);
 
   return (
     <AnimatePresence mode="wait">
@@ -79,29 +87,22 @@ export const FloatingNav = ({
             )}
           >
             <span className="block sm:hidden mx-3">{navItem.icon}</span>
-            <span className="hidden sm:block text-sm">{navItem.name}</span>          
+            <span className="hidden sm:block text-sm">{navItem.name}</span>
           </Link>
         ))}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="ml-3">
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="mt-2 outline-none">
-            <DropdownMenuItem onClick={() => setTheme("light")}>
-              Light
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("dark")}>
-              Dark
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("system")}>
-              System
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="ml-3 "
+          onClick={() => currentTheme=="dark"?handleThemeChange("light"):handleThemeChange("dark")}
+        >
+          {currentTheme === "dark" ? (
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90" />
+          ) : (
+            <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+          )}
+        </Button>
       </motion.div>
     </AnimatePresence>
   );
