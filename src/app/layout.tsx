@@ -1,9 +1,10 @@
 "use client"
-import type { Metadata } from "next";
+
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
+import ContactBar from "@/components/contact-bar";
 
 export const poppinsRegular = Poppins({
   weight: "400",
@@ -35,7 +36,8 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-        <Navbar/>    
+        <Navbar/>   
+        <ContactBar/> 
         {children}
         </ThemeProvider>
       </body>

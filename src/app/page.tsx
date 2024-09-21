@@ -76,4 +76,4 @@ const words = [
   },
 ];
 
-export default Home;
+export default React.memo(Home);

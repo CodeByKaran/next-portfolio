@@ -29,14 +29,14 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { setTheme } = useTheme();
-  const [currentTheme, setCurrentTheme] = useState<any>(getCurrentTheme);
+  const [currentTheme, setCurrentTheme] = useState<string>(getCurrentTheme);
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+      const direction = current! - scrollYProgress.getPrevious()!;
 
       if (scrollYProgress.getPrevious() == 0) {
         setVisible(true);
@@ -50,14 +50,9 @@ export const FloatingNav = ({
     }
   });
 
-  const handleThemeChange = (theme: string) => {
-    setTheme(theme);
-    setCurrentTheme(theme);
-  };
-
   useEffect(() => {
     setTheme(currentTheme);
-  }, []);
+  }, [currentTheme,setTheme]);
 
   return (
     <AnimatePresence mode="wait">
@@ -78,24 +73,37 @@ export const FloatingNav = ({
           className
         )}
       >
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative dark:text-neutral-50 flex items-center justify-center space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-            )}
-          >
-            <span className="block sm:hidden mx-3">{navItem.icon}</span>
-            <span className="hidden sm:block text-sm">{navItem.name}</span>
-          </Link>
-        ))}
+        {navItems.map(
+          (
+            navItem: {
+              name: string;
+              link: string;
+              icon?: JSX.Element;
+            },
+            idx: number
+          ) => (
+            <Link
+              key={`link=${idx}`}
+              href={navItem.link}
+              className={cn(
+                "relative dark:text-neutral-50 flex items-center justify-center space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              )}
+            >
+              <span className="block sm:hidden mx-3">{navItem.icon}</span>
+              <span className="hidden sm:block text-sm">{navItem.name}</span>
+            </Link>
+          )
+        )}
 
         <Button
           variant="ghost"
           size="icon"
           className="ml-3 "
-          onClick={() => currentTheme=="dark"?handleThemeChange("light"):handleThemeChange("dark")}
+          onClick={() =>
+            currentTheme == "dark"
+              ? setCurrentTheme("light")
+              : setCurrentTheme("dark")
+          }
         >
           {currentTheme === "dark" ? (
             <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90" />

@@ -8,12 +8,16 @@ import Textutils from "@/assets/textutils.png";
 import Pingpong from "@/assets/pingpong.png";
 import Bricball from "@/assets/brickbll.png";
 import Whacamole from "@/assets/whacamole.png";
+import Wheater from "@/assets/wheater.png"
+import Noteapp from "@/assets/noteapp.png"
+import Blogapp from "@/assets/blog.png"
 
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 
 const getUrl = (projectname: string) =>
   `https://codebykaran.github.io/PortFolio/Projects/${projectname}/index.html`;
+
 
 function GridBackground() {
   return (
@@ -35,43 +39,61 @@ function GridBackground() {
         source={Calculator}
         title="Calculator"
         link={getUrl("Calculator")}
-        range={300}
+        range={350}
       />
       <FloatICon
         source={Tictactoe}
         title="Tictactoe"
         link={getUrl("Tic-Tac-Toe")}
-        range={180}
+        range={300}
       />
       <FloatICon
         source={Todolist}
         title="Todolist"
         link={getUrl("ToDo")}
-        range={250}
+        range={150}
       />
       <FloatICon
         source={Textutils}
         title="Textutils"
         link={getUrl("TextUtils")}
-        range={350}
+        range={200}
       />
       <FloatICon
         source={Pingpong}
         title="Pingpong"
         link={getUrl("PingPong")}
-        range={200}
+        range={250}
       />
       <FloatICon
         source={Bricball}
         title="Bricball"
         link={getUrl("BrickBall")}
-        range={90}
+        range={300}
       />
       <FloatICon
         source={Whacamole}
         title="Whacamole"
         link={getUrl("WhacAMole")}
-        range={280}
+        range={350}
+      />
+       <FloatICon
+        source={Wheater}
+        title="Wheater App"
+        link={getUrl("WheaterApp")}
+        range={400}
+      />
+      <FloatICon
+        source={Noteapp}
+        title="Mern Note App"
+        link="https://note-app-lizard-alpha.vercel.app/"
+        range={450}
+      />
+      <FloatICon
+        source={Blogapp}
+        title="Mern Blog App"
+        link="https://github.com/CodeByKaran/BlogServer"
+        range={500}
       />
     </div>
   );

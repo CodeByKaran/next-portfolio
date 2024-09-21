@@ -3,10 +3,12 @@ import {
   motion,
   useAnimation,
   useMotionValue,
-  PanInfo,
   AnimatePresence,
 } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
+
+
+
 
 interface FloatIConProps {
   title: string;
@@ -40,13 +42,14 @@ const FloatICon: FC<FloatIConProps> = ({ title, link, source, range }) => {
         transition: {
           repeat: Infinity,
           repeatType: "mirror",
-          duration: 10,
+          duration: 24,
           ease: "easeInOut",
         },
       });
     } else {
       controls.stop();
     }
+    ()=>controls.stop()
   }, [showMenu, controls, range]);
 
   const menuContainerVariants = {
@@ -102,9 +105,10 @@ const FloatICon: FC<FloatIConProps> = ({ title, link, source, range }) => {
       style={{ x, y, willChange: "transform" }}
       animate={controls}
       onClick={handlePress}
-      className="w-fit h-fit rounded-full  flex items-center justify-center absolute p-3 dark:bg-white/20 bg-black/10 z-40"
+      className="w-fit h-fit rounded-full  flex items-center justify-center absolute p-3 dark:bg-white/20 bg-black/10 z-40 "
     >
-      <Image src={source} alt="" width={30} height={30} className="" />
+      <Image src={source} alt="" width={30} height={30} className="" />   
+      
       <AnimatePresence>
         {showMenu && (
           <motion.div

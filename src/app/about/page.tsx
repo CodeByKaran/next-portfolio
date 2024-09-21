@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import React from "react";
 import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
 import { BackgroundLines } from "@/components/ui/background-lines";
@@ -53,4 +53,4 @@ const About = () => {
 
 
 
-export default About;
+export default React.memo(About);
