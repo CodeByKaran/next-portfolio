@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import ContactBar from "@/components/contact-bar";
 
+
+
 const poppinsRegular = Poppins({
   weight: "400",
   style: "normal",
@@ -29,6 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning  className={`${poppinsRegular.variable} ${poppinsBlack.variable}`}>
+      <head>
+        <title>Portfolio | Home</title>
+        <meta name="Portfolio" content="my personal portfolio, coded by karan using nextjs." />
+      </head>
       <body>
       <ThemeProvider
             attribute="class"

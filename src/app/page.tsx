@@ -13,6 +13,10 @@ function Home() {
 
   const router = useRouter()
 
+  React.useEffect(()=>{
+    document.title="Portfolio | Home"
+  },[])
+
   return (
     <AuroraBackground>
       <motion.div
