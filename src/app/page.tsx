@@ -28,7 +28,7 @@ function Home() {
         
         <TypewriterEffect
           words={words}
-          className="text-2xl sm:text-5xl font-bold text-center font-pblack "
+          className="text-2xl md:text-5xl font-bold text-center font-pregular"
           cursorClassName="bg-indigo-700"
         />
         <p className="lowercase text-[15px] sm:text-base font-normal text-center dark:text-gray-400 text-slate-800/90  leading-normal">
@@ -68,11 +68,11 @@ const words = [
   },
   {
     text: "Karan",
-    className: "text-indigo-500 dark:text-indigo-400 text-[1.6em] font-pblack",
+    className: "text-indigo-500 dark:text-indigo-400 text-[1.6em] ",
   },
   {
     text: "Kumar",
-    className: "text-indigo-500 dark:text-indigo-400 text-[1.6em] font-pblack",
+    className: "text-indigo-500 dark:text-indigo-400 text-[1.6em] ",
   },
 ];
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   motion,
   AnimatePresence,
@@ -12,11 +12,6 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
-const getCurrentTheme = () => {
-  const theme = localStorage.getItem("theme");
-  return theme == "system" ? "dark" : theme || "dark";
-};
-
 export const FloatingNav = ({
   navItems,
   className,
@@ -28,8 +23,8 @@ export const FloatingNav = ({
   }[];
   className?: string;
 }) => {
-  const { setTheme } = useTheme();
-  const [currentTheme, setCurrentTheme] = useState<string>(getCurrentTheme);
+  const {  setTheme } = useTheme();
+
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(true);
@@ -49,10 +44,6 @@ export const FloatingNav = ({
       }
     }
   });
-
-  useEffect(() => {
-    setTheme(currentTheme);
-  }, [currentTheme,setTheme]);
 
   return (
     <AnimatePresence mode="wait">
@@ -95,21 +86,10 @@ export const FloatingNav = ({
           )
         )}
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="ml-3 "
-          onClick={() =>
-            currentTheme == "dark"
-              ? setCurrentTheme("light")
-              : setCurrentTheme("dark")
-          }
-        >
-          {currentTheme === "dark" ? (
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90" />
-          ) : (
-            <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-          )}
+        <Button variant="ghost" size="icon" className="ml-3 relative">
+          <Sun className="h-[1.2rem] w-[1.2rem] scale-0 rotate-0  transition-all dark:scale-100" onClick={()=>setTheme("light")}/>
+
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-0 scale-100 dark:scale-0 transition-all"  onClick={()=>setTheme("dark")}/>
         </Button>
       </motion.div>
     </AnimatePresence>
